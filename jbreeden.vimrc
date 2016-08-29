@@ -18,7 +18,7 @@ set autoindent
 "Show partially-entered commands in the status bar
 set showcmd
 
-"Show Tab & EOL
+"Show Tab & EOL (just here as a reminder)
 "set list "set nolist
 
 "Expand tabs into spaces
@@ -35,3 +35,5 @@ if &history < 1000
   set history=1000
 endif
 
+"Make search case insensitive by default
+set ignorecase
