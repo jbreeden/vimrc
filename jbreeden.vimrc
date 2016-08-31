@@ -37,3 +37,9 @@ endif
 
 "Make search case insensitive by default
 set ignorecase
+
+"Edit vimrc in a vertically "split" window
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
+"Re-source vimrc
+nnoremap <leader>sv :source $MYVIMRC<cr>
