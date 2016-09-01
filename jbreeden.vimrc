@@ -1,7 +1,9 @@
 "Setup pathogen (a vim package manager)
- execute pathogen#infect()
- syntax on
- filetype plugin indent on
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+
+let mapleader=","
 
 "Unset compatability mode (enables vim features that are not compatible with vi)
 set nocp
