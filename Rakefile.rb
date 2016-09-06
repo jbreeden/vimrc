@@ -17,8 +17,4 @@ task :install do
     sh 'git clone https://github.com/tpope/vim-fugitive'
     sh 'vim -u NONE -c "helptags vim-fugitive/doc" -c q'
   }
-
-#  bundle('powerline') {
-#    sh 'git clone https://github.com/powerline/powerline'
-#  }
 end

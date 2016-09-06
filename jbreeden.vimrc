@@ -1,13 +1,21 @@
 "Setup pathogen (a vim package manager)
- execute pathogen#infect()
- syntax on
- filetype plugin indent on
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+
+let mapleader=","
 
 "Unset compatability mode (enables vim features that are not compatible with vi)
 set nocp
 
 "Highlight all search results (use :noh to disable until next search)
-set hlsearch 
+set hlsearch
+
+"Enable incremental sesarch
+set incsearch
+
+"Always use regex magic
+nnoremap / /\v
 
 "Use relative numbering in the gutter (for easier jumps)
 set relativenumber
@@ -24,11 +32,11 @@ set showcmd
 "Expand tabs into spaces
 set expandtab
 
-"Set width for `<` & `>` (shift selection / indent/unindent)
-set shiftwidth=2
-
 "Set tab width
 set tabstop=2
+
+"Set width for `<` & `>` (shift selection / indent/unindent)
+set shiftwidth=2
 
 "Keep at least 1000 entries in the history
 if &history < 1000
@@ -38,8 +46,5 @@ endif
 "Make search case insensitive by default
 set ignorecase
 
-"Edit vimrc in a vertically "split" window
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-
-"Re-source vimrc
-nnoremap <leader>sv :source $MYVIMRC<cr>
+"Open splits to the right of the current window
+set splitright
