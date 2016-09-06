@@ -25,11 +25,19 @@ vnoremap <C-b> <Left>
 cnoremap <C-b> <Left>
 inoremap <C-b> <Left>
 
-"Adds: Adds ctrl-a ctrl-e for begin/end of line:w
+"Adds: Adds ctrl-a ctrl-e for begin/end of line
 nnoremap <C-a> <Home>
 cnoremap <C-a> <Home>
 vnoremap <C-a> <Home>
-inoremap <C-a> <esc>I
+"function! InsertModeCtrlA()
+"  let start = col('.')
+"  execute "normal! \<Esc>I"
+"  if start == col('.')
+"    execute "normal! \<Home>"
+"  endif
+"endfunction
+"inoremap <C-a> <esc>:call InsertModeCtrlA()<cr>i
+inoremap <C-a> <Esc>I
 
 nnoremap <C-e> <End>
 cnoremap <C-e> <End>
