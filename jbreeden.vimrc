@@ -26,6 +26,9 @@ set autoindent
 "Show partially-entered commands in the status bar
 set showcmd
 
+"Show cursor position in status line
+set ruler
+
 "Show Tab & EOL (just here as a reminder)
 "set list "set nolist
 
@@ -45,6 +48,9 @@ endif
 
 "Make search case insensitive by default
 set ignorecase
+
+"Make search case sensitive when it includes an uppercase char
+set smartcase
 
 "Open splits to the right of the current window
 set splitright

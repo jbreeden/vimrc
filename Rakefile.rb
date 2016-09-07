@@ -8,7 +8,7 @@ def bundle(folder_name)
   end
 end
 
-desc "Install my vimrc & plugins"
+desc 'Install my vimrc & plugins'
 task :install do
   vimrc_path = "#{$root}/jbreeden.vimrc"
   vimdir_path = "#{$root}/jbreeden.vim"
