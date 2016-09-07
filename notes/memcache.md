@@ -3,6 +3,10 @@
 Keep commands you want to remember here.
 Once you know them well / use them often, remove them.
 
+## Explore folder containing current file
+
+:Explore
+
 ## Cmdline replacements
 
 :help cmdline-special

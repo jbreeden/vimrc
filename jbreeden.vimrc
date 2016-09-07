@@ -37,6 +37,8 @@ set expandtab
 
 "Set tab width
 set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 
 "Set width for `<` & `>` (shift selection / indent/unindent)
 set shiftwidth=2
