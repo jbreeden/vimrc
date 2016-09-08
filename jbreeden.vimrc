@@ -16,6 +16,7 @@ set incsearch
 
 "Always use regex magic
 nnoremap / /\v
+vnoremap / /\v
 
 "Use relative numbering in the gutter (for easier jumps)
 set relativenumber
