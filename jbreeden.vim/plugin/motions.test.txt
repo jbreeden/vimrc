@@ -1,0 +1,49 @@
+"Yank this into a register, then execute it at each test (first character after comment)
+:normal =getline('.')
+
+"Select inside & delete
+jl,i(d
+(deleteme)
+
+"Select inside twice
+j0llllll,i(,i(d
+(dele(tem)e)
+
+"Select Around
+jl,a(d
+(deleteallofme)
+
+"Select Next
+j,in(d
+test (deleteme)
+
+"Select Prev
+j$,ip(d
+(deleteme) test
+
+"Select Next Twice
+j0,in(,in(d
+test(ing)test(deleteme)
+
+"Select Prev Twice
+j$,ip(,ip(d
+test(deleteme)test(ing)teset
+
+"Select in then around
+jj0,i{y,i{,a{p
+{
+  select_inside_yank_select_all_paste
+}
+
+"Select inside then select next
+j0l,i{y,in(p
+{yankme}(patsehere)
+
+"Select next empty
+j0,in(
+testing()blah(i_should_not_be_selected)
+
+"Select prev empty
+j$,ip(
+testing(i_should_not_be_selected)testing()testing
+
