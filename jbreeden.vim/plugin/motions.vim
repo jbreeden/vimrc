@@ -1,6 +1,7 @@
 "TODO
-"Cannot "select in next" of an empty pair.
-"SelectInside doesn't capture newline if start token in the last on a line
+"Should ignore space before closing token if it's on it's own line (so that
+"indentation doesn't have to be re-done by the user in the likely case that
+"it's still line separated).
 
 command! ReselectToHere normal! mZgv`Z
 
@@ -76,6 +77,21 @@ function! SelectInside(start, middle, end, visual, scope, ...)
   if !searchpair(a:start, a:middle, a:end, 'bW')
     return 0
   endif
+  
+  let start_token_pos = getpos('.')
+
+  "Special case: tokens are on same or adjacent lines, with only whitespace in
+  "between. Collapse the tokens onto a single line and select between.
+"  let to_next_line = join([getline('.')[col('.')-1:], getline(line('.') + 1)], "\n")
+"  if to_next_line =~ (a:start . '\s*\n\s*' . a:end)
+"    echom "In the new hotness"
+"    normal! v$dd$
+"    call append('.', split(substitute(to_next_line, '\m\(' . a:start . '\)\s*\n\s*\(' . a:end . '\)', '\1 \2', ''), "\n"))
+"    normal! J
+"    call search(a:start, 'eWc')
+"    normal lv
+"    return 1
+"  endif
 
   if a:scope == 'i'
     call search(a:start, 'ec')
@@ -84,11 +100,10 @@ function! SelectInside(start, middle, end, visual, scope, ...)
 
   "Set the mark, then move beyond the start token
   "so it doesn't match it's own end token when we
-  "call searchpair below
+  "call searchpair below. (In inner mode, we already
+  "did NextChar above.)
   let selection_lhs = getpos('.')
   if a:scope != 'i'
-    "Well, in inner mode, we're already past the start token,
-    "don't go anoher character forward or empty pairs won't match
     call NextChar()
   endif
 
@@ -97,6 +112,7 @@ function! SelectInside(start, middle, end, visual, scope, ...)
     return 0
   endif
 
+  let end_token_pos = getpos('.')
   if a:scope == 'i'
     call PrevChar()
   else
@@ -104,6 +120,7 @@ function! SelectInside(start, middle, end, visual, scope, ...)
   endif
 
   let selection_rhs = getpos('.')
+  echo string(selection_lhs) string(selection_rhs)
   normal! v
   call setpos('.', selection_lhs)
 
@@ -148,12 +165,14 @@ vnoremap <silent> <Leader>i< :call<C-U>call Try(1, "SelectInside", ['<', '', '>'
 noremap <silent> <Leader>a< :call Try(0, "SelectInside", ['<', '', '>', 0, 'a'])<CR>
 vnoremap <silent> <Leader>a< :call<C-U>call Try(1, "SelectInside", ['<', '', '>', 1, 'a'])<CR>
 
-command! IDo :call SelectInside('do', '', 'end', 0, 'i')
-command! ADo :call SelectInside('do', '', 'end', 0, 'a')
-noremap <silent> <Leader>ido :call Try(0, "SelectInside", ['do', '', 'end', 0, 'i'])<CR>
-vnoremap <silent> <Leader>ido :call<C-U>call Try(1, "SelectInside", ['do', '', 'end', 1, 'i'])<CR>
-noremap <silent> <Leader>ado :call Try(0, "SelectInside", ['do', '', 'end', 0, 'a'])<CR>
-vnoremap <silent> <Leader>ado :call<C-U>call Try(1, "SelectInside", ['do', '', 'end', 1, 'a'])<CR>
+let g:ruby_block_start = '\%(\<do\>\|\<if\>\|\<unless\>\|\<while\>\|\<begin\>\|\<class\>\|\<module\>\)'
+let g:ruby_block_end = '\%(\<end\>\)'
+command! IDo :call SelectInside(g:ruby_block_start, '', g:ruby_block_end, 0, 'i')
+command! ADo :call SelectInside(g:ruby_block_start, '', g:ruby_block_end, 0, 'a')
+noremap <silent> <Leader>ido :call Try(0, "SelectInside", [g:ruby_block_start, '', g:ruby_block_end, 0, 'i'])<CR>
+vnoremap <silent> <Leader>ido :call<C-U>call Try(1, "SelectInside", [g:ruby_block_start, '', g:ruby_block_end, 1, 'i'])<CR>
+noremap <silent> <Leader>ado :call Try(0, "SelectInside", [g:ruby_block_start, '', g:ruby_block_end, 0, 'a'])<CR>
+vnoremap <silent> <Leader>ado :call<C-U>call Try(1, "SelectInside", [g:ruby_block_start, '', g:ruby_block_end, 1, 'a'])<CR>
 
 function! SelectInsideBars(in_visual_mode)
   if a:in_visual_mode 
@@ -258,12 +277,12 @@ vnoremap <silent> <Leader>ip< :call<C-U>call Try(1, "SelectNext", ['<', '', '>',
 noremap <silent> <Leader>ap< :call Try(0, "SelectNext", ['<', '', '>', 'a', 1])<CR>
 vnoremap <silent> <Leader>ap< :call<C-U>call Try(1, "SelectNext", ['<', '', '>', 'a', 1])<CR>
 
-noremap <silent> <Leader>indo :call Try(0, "SelectNext", ['do', '', 'end', 'i', 0])<CR>
-vnoremap <silent> <Leader>indo :call<C-U>call Try(1, "SelectNext", ['do', '', 'end', 'i', 0])<CR>
-noremap <silent> <Leader>ando :call Try(0, "SelectNext", ['do', '', 'end', 'a', 0])<CR>
-vnoremap <silent> <Leader>ando :call<C-U>call Try(1, "SelectNext", ['do', '', 'end', 'a', 0])<CR>
-noremap <silent> <Leader>ipdo :call Try(0, "SelectNext", ['do', '', 'end', 'i', 1])<CR>
-vnoremap <silent> <Leader>ipdo :call<C-U>call Try(1, "SelectNext", ['do', '', 'end', 'i', 1])<CR>
-noremap <silent> <Leader>apdo :call Try(0, "SelectNext", ['do', '', 'end', 'a', 1])<CR>
-vnoremap <silent> <Leader>apdo :call<C-U>call Try(1, "SelectNext", ['do', '', 'end', 'a', 1])<CR>
+noremap <silent> <Leader>indo :call Try(0, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'i', 0])<CR>
+vnoremap <silent> <Leader>indo :call<C-U>call Try(1, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'i', 0])<CR>
+noremap <silent> <Leader>ando :call Try(0, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'a', 0])<CR>
+vnoremap <silent> <Leader>ando :call<C-U>call Try(1, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'a', 0])<CR>
+noremap <silent> <Leader>ipdo :call Try(0, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'i', 1])<CR>
+vnoremap <silent> <Leader>ipdo :call<C-U>call Try(1, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'i', 1])<CR>
+noremap <silent> <Leader>apdo :call Try(0, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'a', 1])<CR>
+vnoremap <silent> <Leader>apdo :call<C-U>call Try(1, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'a', 1])<CR>
 
