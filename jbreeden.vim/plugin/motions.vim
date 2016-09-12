@@ -2,6 +2,8 @@
 "Should ignore space before closing token if it's on it's own line (so that
 "indentation doesn't have to be re-done by the user in the likely case that
 "it's still line separated).
+"
+"Ruby statement modifiers are f-ing my day up
 
 command! ReselectToHere normal! mZgv`Z
 
@@ -165,7 +167,7 @@ vnoremap <silent> <Leader>i< :call<C-U>call Try(1, "SelectInside", ['<', '', '>'
 noremap <silent> <Leader>a< :call Try(0, "SelectInside", ['<', '', '>', 0, 'a'])<CR>
 vnoremap <silent> <Leader>a< :call<C-U>call Try(1, "SelectInside", ['<', '', '>', 1, 'a'])<CR>
 
-let g:ruby_block_start = '\%(\<do\>\|\<if\>\|\<unless\>\|\<while\>\|\<begin\>\|\<class\>\|\<module\>\)'
+let g:ruby_block_start = '\%(\<do\>\|\<def\>\|\<if\>\|\<unless\>\|\<while\>\|\<begin\>\|\<class\>\|\<module\>\)'
 let g:ruby_block_end = '\%(\<end\>\)'
 command! IDo :call SelectInside(g:ruby_block_start, '', g:ruby_block_end, 0, 'i')
 command! ADo :call SelectInside(g:ruby_block_start, '', g:ruby_block_end, 0, 'a')
