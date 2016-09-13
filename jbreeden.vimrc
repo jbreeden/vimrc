@@ -5,6 +5,12 @@ filetype plugin indent on
 
 let mapleader=","
 
+"Don't create swap files next to the file you're editing
+"Instead, create them in ~/tmp, or somewhere else, as able.
+"Note: Ending with // means "create a unique filename based on the full path
+"to the actual file)
+set dir=~/tmp//,/var/tmp//,/tmp//
+
 "Unset compatability mode (enables vim features that are not compatible with vi)
 set nocp
 

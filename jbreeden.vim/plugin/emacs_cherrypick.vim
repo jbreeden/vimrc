@@ -12,7 +12,15 @@ function! InsertModeTab()
     return "\<C-n>"
   endif
 endfunction
+function! InsertModeShiftTab()
+  if match(getline('.')[col('.') - 2], '\S') == -1
+    return "\<S-Tab>"
+  else
+    return "\<C-p>"
+  endif
+endfunction
 inoremap <expr> <Tab> InsertModeTab()
+inoremap <expr> <S-Tab> InsertModeShiftTab()
 
 "Adds: emacs-like ctrl-f ctrl-b for left & right by characters
 nnoremap <c-f> <right>
@@ -43,23 +51,6 @@ nnoremap <C-e> <End>
 cnoremap <C-e> <End>
 vnoremap <C-e> <End>
 inoremap <C-e> <esc>A
-
-"Adds: Kill to end of line
-nnoremap <C-k> d$
-
-"Kill behavior in insert mode:
-" - If appending beyond last char, delete the newline
-" - else, there is text after the cursor and we'll delete that
-function! InsertModeKill()
-  if col('.') == col('$')
-    return "\<Delete>"
-  elseif col('.') == 1
-    return "\<Esc>d$i"
-  else
-    return "\<Esc>ld$a"
-  endif
-endfunction
-inoremap <expr> <C-k> InsertModeKill()
 
 "Adds: ctrl-d deletion for command mode & insert mode
 " (For noral mode, this is used to page down by half page.
