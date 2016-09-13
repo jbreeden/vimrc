@@ -5,6 +5,8 @@ filetype plugin indent on
 
 let mapleader=","
 
+set dir-=.
+
 "Unset compatability mode (enables vim features that are not compatible with vi)
 set nocp
 
