@@ -26,7 +26,9 @@ call extend(s:mappings, {
 call extend(s:mappings, {
   \'q': ":q<CR>",
   \'Q': ":q!<CR>",
-  \'n': ":vert new<CR>"
+  \'w': ":w<CR>",
+  \'n': ":new<CR>",
+  \'N': ":vert new<CR>"
 \})
 
 "Moving
