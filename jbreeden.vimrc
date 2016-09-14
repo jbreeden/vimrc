@@ -5,6 +5,9 @@ filetype plugin indent on
 
 let mapleader=","
 
+"Don't wrap lines
+set nowrap
+
 "Prefer git for backups
 set nobackup
 
