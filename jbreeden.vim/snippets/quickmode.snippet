@@ -1,0 +1,28 @@
+let s:trigger = "<Leader><Leader>{TODO: trigger_key}"
+let s:mappings = {}
+
+call extend(s:mappings, {
+  \'{TODO: mapping_lhs}' : '{TODO: mapping_rhs}',
+\})
+
+call extend(s:mappings, {
+  \'<Esc>' : ':call Quick{TODO: quick_mode_name}ModeExit()<CR>',
+  \s:trigger : ':call Quick{TODO: quick_mode_name}ModeExit()<CR>'
+\})
+
+if !exists('s:clobbered')
+  let s:clobbered = {}
+endif
+
+function! Quick{TODO: quick_mode_name}Mode()
+  if QuickMode(s:mappings, s:clobbered)
+    echo "In Quick {TODO: quick_mode_name} Mode (<Esc> to exit)"
+  endif
+endfunction
+
+function! Quick{TODO: quick_mode_name}ModeExit()
+  call QuickModeExit(s:clobbered)
+  echo "Exited Quick {TODO: quick_mode_name} Mode"
+endfunction
+
+execute "nnoremap " . s:trigger . " :call Quick{TODO: quick_mode_name}Mode()<CR>"

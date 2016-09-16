@@ -1,4 +1,4 @@
-let s:quick_mode_active = 0
+let s:is_active = 0
 let s:last_clobbered = {}
 
 " Deactivates a quick mode.
@@ -15,7 +15,7 @@ function! QuickModeExit(clobbered)
     endif
   endfor
   let s:last_clobbered = {}
-  let s:quick_mode_active = 0
+  let s:is_active = 0
 endfunction
 
 " Activates a quick mode.
@@ -25,7 +25,7 @@ endfunction
 "     mappings.
 " Returns: 0 if the mode could not be activated. Else 1.
 function! QuickMode(mappings, clobbered)
-  if s:quick_mode_active
+  if s:is_active
     call QuickModeExit(s:last_clobbered)
   endif
 
@@ -36,7 +36,7 @@ function! QuickMode(mappings, clobbered)
     execute "nnoremap " . key . " " . a:mappings[key]
   endfor
 
-  let s:quick_mode_active = 1
+  let s:is_active = 1
   let s:last_clobbered = a:clobbered
   return 1
 endfunction

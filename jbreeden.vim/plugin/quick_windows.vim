@@ -28,7 +28,8 @@ call extend(s:mappings, {
   \'Q': ":q!<CR>",
   \'w': ":w<CR>",
   \'n': ":new<CR>",
-  \'N': ":vert new<CR>"
+  \'N': ":vert new<CR>",
+  \'H': ":hide<CR>"
 \})
 
 "Moving

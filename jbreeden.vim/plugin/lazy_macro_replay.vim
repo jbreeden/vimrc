@@ -1,2 +1,0 @@
-nnoremap <Leader>q @q
-

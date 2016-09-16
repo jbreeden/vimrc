@@ -1,5 +1,4 @@
-"Setup pathogen (a vim package manager)
-execute pathogen#infect()
+"Setup pathogen (a vim package manager) execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
@@ -47,12 +46,9 @@ set ruler
 set expandtab
 
 "Set tab width
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-
-"Set width for `<` & `>` (shift selection / indent/unindent)
-set shiftwidth=2
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 
 "Keep at least 1000 entries in the history
 if &history < 1000
