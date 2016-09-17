@@ -23,10 +23,6 @@ set hlsearch
 "Enable incremental sesarch
 set incsearch
 
-"Always use regex magic
-nnoremap / /\v
-vnoremap / /\v
-
 "Use relative numbering in the gutter (for easier jumps)
 set relativenumber
 
@@ -41,14 +37,6 @@ set ruler
 
 "Show Tab & EOL (just here as a reminder)
 "set list "set nolist
-
-"Expand tabs into spaces
-set expandtab
-
-"Set tab width
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
 
 "Keep at least 1000 entries in the history
 if &history < 1000

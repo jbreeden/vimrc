@@ -1,5 +1,5 @@
 - Commenting
-- Type-over closing brackets
+- [DONE] Type-over closing brackets
   + Remember ctrl-v to avoid mappings and insert directly
 - [DONE] Window sizing
 - [DONE] Light-modes : Define a set of bindings that work until <Esc> is hit (escape key may be configurable per mode)
