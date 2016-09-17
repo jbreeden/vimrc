@@ -10,7 +10,7 @@ def bundle(folder_name)
   end
 end
 
-def github_bundle(folder_name, repo_name)
+def github_bundle(folder_name, repo_name) 
   bundle(folder_name) {
     sh "git clone --depth=1 https://github.com/#{repo_name}"
     yield if block_given?
@@ -52,3 +52,4 @@ task :install do
   github_bundle("vim-monokai", "sickill/vim-monokai")
   github_bundle("vim-colors-solarized", "altercation/vim-colors-solarized")
 end
+
