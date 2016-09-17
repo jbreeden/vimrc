@@ -14,7 +14,7 @@ function! QuickSnippetsLoad()
         if file_name_parts[1] == 'vim'
            execute "source " . f
        else
-           call Snippet('=' . snippet_name . '=', '<Esc>:r ' . f . '<CR>')
+           call Snippet('=' . snippet_name . '=', '<Esc>:r ' . f . '<CR>`[V`]=`[')
        endif
     endfor
 endfunction
