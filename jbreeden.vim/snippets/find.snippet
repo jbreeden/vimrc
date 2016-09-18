@@ -1,4 +1,0 @@
-find . -type f -iname '{TODO: file_filter}' 2> /dev/null \
-| xargs -n 20 grep -Hn -i '{TODO: search_term}' 2> /dev/null \
-| tee ~/.vim/locations/default.list
-

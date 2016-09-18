@@ -36,7 +36,7 @@ function! TypeoverTwins(char)
     if getline('.')[col('.') - 1] == a:char
         return "\<Right>"
     else
-        return a:char . a:char . "\<Left>"
+        return a:char
     endif
 endfunction
 

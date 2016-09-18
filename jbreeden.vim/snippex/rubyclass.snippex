@@ -1,3 +1,4 @@
+execute "normal! `[/TODO\<CR>"
 class {TODO: class_name}
     attr_accessor :{TODO: attrs}
 

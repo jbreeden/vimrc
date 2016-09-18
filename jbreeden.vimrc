@@ -4,6 +4,9 @@ filetype plugin indent on
 
 let mapleader=","
 
+let $scratch="~/.vim/scratch"
+let $snippex="~/.vim/snippex"
+
 "Don't wrap lines
 set nowrap
 

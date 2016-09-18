@@ -1,0 +1,31 @@
+let @z = "" | execute '.;/\v^---/g!/\v^---/normal "Zdd' | @z
+
+set buftype=nofile
+
+call matchadd("Comment", '^#.*')
+call matchadd("Comment", '\v---.*')
+
+setlocal nowrap
+1;/\v^.*\S/g!/\v.*\S/d
+
+function! b:Search()
+  let cmd = ""
+  2;/^---/g!/^---/let cmd .= (getline('.') . "\n")
+  /^---/
+  if line('$') > line('.')
+    +1,$d
+  endif
+  silent call append(line('$'), split(system(cmd), "\n"))
+endfunction
+
+nnoremap <buffer> <Leader><Space> :call b:Search()<CR>
+call QuickLocationListMode()
+execute "normal /TODO\<CR>"
+--- Find ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Search: <Leader><Space>
+
+find . -type f -iname '{TODO: file_pattern}' \
+    | xargs -n 20 grep -Hn -i '{TODO: search_term}' \
+    | tee ~/.vim/scratch/locations.txt
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
