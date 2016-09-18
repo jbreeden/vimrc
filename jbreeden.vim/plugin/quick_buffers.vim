@@ -5,15 +5,12 @@ let s:mappings = {}
 "Quit a buffer
 call extend(s:mappings, {
   \'q': ':b #<CR>:bd #<CR>',
-  \'Q': ':b! #<CR>:bd! #<CR>'
-\})
-
-"Cycle through buffers
-call extend(s:mappings, {
+  \'Q': ':b! #<CR>:bd! #<CR>',
   \'j': ':bnext<CR>',
-  \'l': ':bnext<CR>',
   \'k': ':bprev<CR>',
-  \'h': ':bprev<CR>'
+  \'w': ':w<CR>',
+  \'n': ':enew<CR>',
+  \'N': ':new<CR>',
 \})
 
 call extend(s:mappings, {

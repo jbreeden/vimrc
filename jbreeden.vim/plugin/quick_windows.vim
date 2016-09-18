@@ -27,6 +27,7 @@ call extend(s:mappings, {
   \'q': ":q<CR>",
   \'Q': ":q!<CR>",
   \'w': ":w<CR>",
+  \'s': ":source %<CR>",
   \'n': ":new<CR>",
   \'N': ":vert new<CR>",
   \'H': ":hide<CR>"
