@@ -1,4 +1,4 @@
-execute "normal! `[/TODO\<CR>"
+call SnippexTodoTemplate()
 class {TODO: class_name}
     attr_accessor :{TODO: attrs}
 

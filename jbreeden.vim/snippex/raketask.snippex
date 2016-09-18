@@ -1,4 +1,4 @@
-execute 'normal! `[/TODO' . "\<CR>"
+call SnippexTodoTemplate()
 desc '{TODO: task_description}'
 task :{TODO: task_name} do
   {TODO: task_body}

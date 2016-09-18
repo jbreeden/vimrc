@@ -1,0 +1,10 @@
+call SnippexBootstrap('__END__')
+.;/^\s*$/g/\S/normal! ==
+d
+__END__
+setlocal bufhidden=hide
+setlocal buftype=nofile
+f CustomBuffer
+setlocal noswapfile
+setlocal buflisted
+

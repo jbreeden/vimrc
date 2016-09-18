@@ -1,4 +1,4 @@
-call SnippexExecuteUntil('^---')
+call SnippexBootstrap('__END__')
 
 call matchadd("Comment", '^#.*')
 call matchadd("Comment", '\v---.*')
@@ -13,15 +13,21 @@ function! b:ExecutePanel()
   normal! jV
   /^---/
   normal! k"zy
-  "let cmd = @z
-  tabnew
+  enew
+  
+  setlocal bufhidden=hide
+  setlocal buftype=nofile
+  setlocal noswapfile
+
   call append(0, split(system(getreg('@z')), "\n"))
+  normal gg
 endfunction
 
-nnoremap <buffer> <Leader><Space> :call b:ExecutePanel()<CR>
-call QuickLocationListMode()
-execute "normal /TODO:\<CR>"
+nnoremap <buffer> <Leader><Space> :silent call b:ExecutePanel()<CR>
 
+let @/ = 'TODO'
+execute "normal /TODO:\<CR>va{"
+__END__
 --- Search --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # To run search: <Leader><Space>
@@ -29,7 +35,17 @@ execute "normal /TODO:\<CR>"
 #  and press ca{ to change the search parameters quickly.)
 
 find . -type f -iname '{TODO: file_pattern}' \
-    | xargs -n 20 grep -Hn -i '{TODO: search_term}' \
-    | tee ~/.vim/scratch/locations.txt
+| xargs -n 20 grep -Hn -i '{TODO: search_term}' \
+| tee ~/.vim/scratch/locations.txt
+
+--- SplunkJS --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+find ~/splunk/source/web/search_mrsparkle/exposed/js \
+  -type f \
+  \! -path '*/build*/' \
+  \! -name '*.min.*' \
+  \! -iname '*.js' \
+| xargs -n 20 grep -Hn -i '{TODO: search_term}' \
+| tee ~/.vim/scratch/locations.txt
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

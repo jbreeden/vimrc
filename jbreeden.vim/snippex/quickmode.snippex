@@ -1,4 +1,4 @@
-execute 'normal! `[/TODO' . "\<CR>"
+call SnippexTodoTemplate()
 let s:trigger = "<Leader><Leader>{TODO: trigger_key}"
 let s:mappings = {}
 

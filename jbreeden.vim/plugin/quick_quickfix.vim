@@ -2,20 +2,20 @@ let s:trigger = "<Leader><Leader>c"
 let s:mappings = {}
 
 call extend(s:mappings, {
-            \'n' : ':cnext<CR>',
-            \'N' : ':cprev<CR>',
-            \'o' : ':copen<CR>',
-            \'q' : ':cclose<CR>',
-            \'}' : ':cnf<CR>',
-            \'{' : ':cpf<CR>',
-            \'0' : ':cfirst<CR>',
-            \'$' : ':clast<CR>',
-            \})
+  \'n' : ':cnext<CR>',
+  \'N' : ':cprev<CR>',
+  \'o' : ':copen<CR>',
+  \'q' : ':cclose<CR>',
+  \'}' : ':cnf<CR>',
+  \'{' : ':cpf<CR>',
+  \'0' : ':cfirst<CR>',
+  \'$' : ':clast<CR>',
+\})
 
 call extend(s:mappings, {
-            \'<Esc>' : ':call QuickQuickfixModeExit()<CR>',
-            \s:trigger : ':call QuickQuickfixModeExit()<CR>'
-            \})
+  \'<Esc>' : ':call QuickQuickfixModeExit()<CR>',
+  \s:trigger : ':call QuickQuickfixModeExit()<CR>'
+\})
 
 if !exists('s:clobbered')
     let s:clobbered = {}

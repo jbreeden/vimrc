@@ -1,13 +1,30 @@
-"Execute the current file until pattern is encountered.
-function! SnippexExecuteUntil(pattern)
+"Convenience bootstrap function for snippex snippets.
+function! SnippexBootstrap(pattern)
+  call getchar(0)
+  d
+  let prev_z = @z
   let @z = "" 
   execute '.;/' . a:pattern . '/g!/' . a:pattern . '/normal! "Zdd'
+  d
   @z
+  let @z = prev_z
 endfunction
 
+"Convenience bootstrap for snippets with {TODO: ...} style replacements
+function! SnippexTodoTemplate()
+  d
+  let @/ = 'TODO'
+  call getchar(0)
+  execute "normal! /TODO\<CR>va{"
+endfunction
+
+"Expand a snippet file from ~/.vim/snippex
 function! SnippexExpand(snippet_name)
+  let prev_z = @z
   execute "r ~/.vim/snippex/" . a:snippet_name . ".snippex"
-  execute "normal! `[0\"zy$dd:@z\<CR>"
+  normal! `[0"zy$
+  @z
+  let @z = prev_z
 endfunction
 
 "Load snippets from files in ~/.vim/snippex

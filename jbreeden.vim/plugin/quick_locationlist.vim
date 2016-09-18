@@ -2,20 +2,20 @@ let s:trigger = "<Leader><Leader>l"
 let s:mappings = {}
 
 call extend(s:mappings, {
-            \'n' : ':lnext<CR>',
-            \'N' : ':lprev<CR>',
-            \'o' : ':lopen<CR>',
-            \'q' : ':lclose<CR>',
-            \'}' : ':lnf<CR>',
-            \'{' : ':lpf<CR>',
-            \'0' : ':lfirst<CR>',
-            \'$' : ':llast<CR>',
-            \})
+  \'n' : ':lnext<CR>',
+  \'N' : ':lprev<CR>',
+  \'o' : ':lopen<CR>',
+  \'q' : ':lclose<CR>',
+  \'}' : ':lnf<CR>',
+  \'{' : ':lpf<CR>',
+  \'0' : ':lfirst<CR>',
+  \'$' : ':llast<CR>',
+\})
 
 call extend(s:mappings, {
-            \'<Esc>' : ':call QuickLocationListModeExit()<CR>',
-            \s:trigger : ':call QuickLocationListModeExit()<CR>'
-            \})
+  \'<Esc>' : ':call QuickLocationListModeExit()<CR>',
+  \s:trigger : ':call QuickLocationListModeExit()<CR>'
+\})
 
 if !exists('s:clobbered')
     let s:clobbered = {}
