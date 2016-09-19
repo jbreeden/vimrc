@@ -1,11 +1,13 @@
 "Convenience bootstrap function for snippex snippets.
 function! SnippexBootstrap(pattern)
   call getchar(0)
-  d
+  "Remove bootstrap line
+  d 
   let prev_z = @z
   let @z = "" 
   execute '.;/' . a:pattern . '/g!/' . a:pattern . '/normal! "Zdd'
-  d
+   "Remove end line (matched by a:pattern)
+   d
   @z
   let @z = prev_z
 endfunction
@@ -13,6 +15,9 @@ endfunction
 "Convenience bootstrap for snippets with {TODO: ...} style replacements
 function! SnippexTodoTemplate()
   d
+  let pos = getpos('.')
+  execute ".;+" . (b:snippex_content_lines - 2) . "normal! =="
+  call setpos('.', pos)
   let @/ = 'TODO'
   call getchar(0)
   execute "normal! /TODO\<CR>va{"
@@ -22,6 +27,7 @@ endfunction
 function! SnippexExpand(snippet_name)
   let prev_z = @z
   execute "r ~/.vim/snippex/" . a:snippet_name . ".snippex"
+  let b:snippex_content_lines = line("']") - line("'[") + 1
   normal! `[0"zy$
   @z
   let @z = prev_z

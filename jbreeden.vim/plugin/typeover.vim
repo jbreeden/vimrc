@@ -4,15 +4,7 @@
 
 let g:typeover_enabled = 1
 
-function! TypeoverOpen(start, end)
-    if !g:typeover_enabled
-        return a:start
-    else
-        return a:start . a:end . "\<Left>"
-    endif
-endfunction
-
-function! TypeoverClose(char)
+function! Typeover(char)
     if g:typeover_enabled && getline('.')[col('.') - 1] == a:char
         return "\<Right>"
     else
@@ -20,27 +12,11 @@ function! TypeoverClose(char)
     endif
 endfunction
 
-inoremap <expr> ( TypeoverOpen('(', ')')
-inoremap <expr> ) TypeoverClose(')')
-
-inoremap <expr> [ TypeoverOpen('[', ']')
-inoremap <expr> ] TypeoverClose(']')
-
-inoremap <expr> { TypeoverOpen('{', '}')
-inoremap <expr> } TypeoverClose('}')
-
-inoremap <expr> < TypeoverOpen('<', '>')
-inoremap <expr> > TypeoverClose('>')
-
-function! TypeoverTwins(char)
-    if getline('.')[col('.') - 1] == a:char
-        return "\<Right>"
-    else
-        return a:char
-    endif
-endfunction
-
-inoremap <expr> " TypeoverTwins('"')
-inoremap <expr> ' TypeoverTwins("'")
-inoremap <expr> ` TypeoverTwins('`')
+inoremap <expr> ) Typeover(')')
+inoremap <expr> ] Typeover(']')
+inoremap <expr> } Typeover('}')
+inoremap <expr> > Typeover('>')
+inoremap <expr> " Typeover('"')
+inoremap <expr> ' Typeover("'")
+inoremap <expr> ` Typeover('`')
 

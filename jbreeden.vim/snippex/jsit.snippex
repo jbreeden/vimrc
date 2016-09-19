@@ -1,0 +1,5 @@
+call SnippexTodoTemplate()
+it('{TODO: description}', function () {
+  {TODO: body}
+});
+

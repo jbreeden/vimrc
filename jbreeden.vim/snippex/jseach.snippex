@@ -1,0 +1,5 @@
+call SnippexTodoTemplate()
+{TODO: subject}.forEach(function (el) {
+    {TODO: body}
+});
+
