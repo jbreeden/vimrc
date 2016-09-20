@@ -54,10 +54,10 @@ endfunction
 """
 
 "Move by blank lines
-noremap <silent> <Leader>} :call search('\v^\s*$', "W")<CR>
-noremap <silent> <Leader>{ :call search('\v^\s*$', "Wb")<CR>
-vnoremap <silent> <Leader>} :call search('\v^\s*$', "W")<CR>:ReselectToHere<CR>
-vnoremap <silent> <Leader>{ :call search('\v^\s*$', "Wb")<CR>:ReselectToHere<CR>
+noremap <silent> } :call search('\v^\s*$', "W")<CR>
+noremap <silent> { :call search('\v^\s*$', "Wb")<CR>
+vnoremap <silent> } :call search('\v^\s*$', "W")<CR>:ReselectToHere<CR>
+vnoremap <silent> { :call search('\v^\s*$', "Wb")<CR>:ReselectToHere<CR>
 
 "Select the object you're inside
 function! SelectInside(start, middle, end, visual, scope, ...)
@@ -139,34 +139,6 @@ function! SelectInside(start, middle, end, visual, scope, ...)
   return 1
 endfunction
 
-command! IParen :call Try(0, "SelectInside", ['(', '', ')', 0, 'i'])
-command! AParen :call Try(0, "SelectInside", ['(', '', ')', 0, 'a'])
-noremap <silent> <Leader>i( :call Try(0, "SelectInside", ['(', '', ')', 0, 'i'])<CR>
-vnoremap <silent> <Leader>i( :call<C-U>call Try(1, "SelectInside", ['(', '', ')', 1, 'i'])<CR>
-noremap <silent> <Leader>a( :call Try(0, "SelectInside", ['(', '', ')', 0, 'a'])<CR>
-vnoremap <silent> <Leader>a( :call<C-U>call Try(1, "SelectInside", ['(', '', ')', 1, 'a'])<CR>
-
-command! ISquare :call SelectInside('\[', '', '\]', 0, 'i')
-command! ASquare  :call SelectInside('\[', '', '\]', 0, 'a')
-noremap <silent> <Leader>i[ :call Try(0, "SelectInside", ['\[', '', '\]', 0, 'i'])<CR>
-vnoremap <silent> <Leader>i[ :call<C-U>call Try(1, "SelectInside", ['\[', '', '\]', 1, 'i'])<CR>
-noremap <silent> <Leader>a[ :call Try(0, "SelectInside", ['\[', '', '\]', 0, 'a'])<CR>
-vnoremap <silent> <Leader>a[ :call<C-U>call Try(1, "SelectInside", ['\[', '', '\]', 1, 'a'])<CR>
-
-command! ICurly :call SelectInside('{', '', '}', 0, 'i')
-command! ACurly :call SelectInside('{', '', '}', 0, 'a')
-noremap <silent> <Leader>i{ :call Try(0, "SelectInside", ['{', '', '}', 0, 'i'])<CR>
-vnoremap <silent> <Leader>i{ :call<C-U>call Try(1, "SelectInside", ['{', '', '}', 1, 'i'])<CR>
-noremap <silent> <Leader>a{ :call Try(0, "SelectInside", ['{', '', '}', 0, 'a'])<CR>
-vnoremap <silent> <Leader>a{ :call<C-U>call Try(1, "SelectInside", ['{', '', '}', 1, 'a'])<CR>
-
-command! IAngle :call SelectInside('<', '', '>', 0, 'i')
-command! AAngle :call SelectInside('<', '', '>', 0, 'a')
-noremap <silent> <Leader>i< :call Try(0, "SelectInside", ['<', '', '>', 0, 'i'])<CR>
-vnoremap <silent> <Leader>i< :call<C-U>call Try(1, "SelectInside", ['<', '', '>', 1, 'i'])<CR>
-noremap <silent> <Leader>a< :call Try(0, "SelectInside", ['<', '', '>', 0, 'a'])<CR>
-vnoremap <silent> <Leader>a< :call<C-U>call Try(1, "SelectInside", ['<', '', '>', 1, 'a'])<CR>
-
 let g:ruby_block_start = '\%(\<do\>\|\<def\>\|\<if\>\|\<unless\>\|\<while\>\|\<begin\>\|\<class\>\|\<module\>\)'
 let g:ruby_block_end = '\%(\<end\>\)'
 command! IDo :call SelectInside(g:ruby_block_start, '', g:ruby_block_end, 0, 'i')
@@ -176,7 +148,7 @@ vnoremap <silent> <Leader>ido :call<C-U>call Try(1, "SelectInside", [g:ruby_bloc
 noremap <silent> <Leader>ado :call Try(0, "SelectInside", [g:ruby_block_start, '', g:ruby_block_end, 0, 'a'])<CR>
 vnoremap <silent> <Leader>ado :call<C-U>call Try(1, "SelectInside", [g:ruby_block_start, '', g:ruby_block_end, 1, 'a'])<CR>
 
-function! SelectInsideBars(in_visual_mode)
+function! SelectAroundBars(in_visual_mode)
   if a:in_visual_mode 
     call setpos(".", getpos("'>"))
   endif
@@ -194,8 +166,8 @@ function! SelectInsideBars(in_visual_mode)
   return 1
 endfunction
 
-noremap <silent> <Leader>i<bar> :call Try(0, "SelectInsideBars", [0])<CR>
-vnoremap <silent> <Leader>i<bar> <Esc>:<C-U>call Try(1, "SelectInsideBars", [1])<CR>
+onoremap <silent> a<bar> :call Try(0, "SelectAroundBars", [0])<CR>
+vnoremap <silent> a<bar> <Esc>:<C-U>call Try(1, "SelectAroundBars", [1])<CR>
 
 "Select the next object
 function! SelectNext(start, middle, end, scope, backward)
@@ -243,48 +215,48 @@ function! SelectNext(start, middle, end, scope, backward)
   return 1
 endfunction
 
-noremap <silent> <Leader>in( :call Try(0, "SelectNext", ['(', '', ')', 'i', 0])<CR>
-vnoremap <silent> <Leader>in( :call<C-U>call Try(1, "SelectNext", ['(', '', ')', 'i', 0])<CR>
-noremap <silent> <Leader>an( :call Try(0, "SelectNext", ['(', '', ')', 'a', 0])<CR>
-vnoremap <silent> <Leader>an( :call<C-U>call Try(1, "SelectNext", ['(', '', ')', 'a', 0])<CR>
-noremap <silent> <Leader>ip( :call Try(0, "SelectNext", ['(', '', ')', 'i', 1])<CR>
-vnoremap <silent> <Leader>ip( :call<C-U>call Try(1, "SelectNext", ['(', '', ')', 'i', 1])<CR>
-noremap <silent> <Leader>ap( :call Try(0, "SelectNext", ['(', '', ')', 'a', 1])<CR>
-vnoremap <silent> <Leader>ap( :call<C-U>call Try(1, "SelectNext", ['(', '', ')', 'a', 1])<CR>
+onoremap <silent> in( :call Try(0, "SelectNext", ['(', '', ')', 'i', 0])<CR>
+vnoremap <silent> in( :call<C-U>call Try(1, "SelectNext", ['(', '', ')', 'i', 0])<CR>
+onoremap <silent> an( :call Try(0, "SelectNext", ['(', '', ')', 'a', 0])<CR>
+vnoremap <silent> an( :call<C-U>call Try(1, "SelectNext", ['(', '', ')', 'a', 0])<CR>
+onoremap <silent> ip( :call Try(0, "SelectNext", ['(', '', ')', 'i', 1])<CR>
+vnoremap <silent> ip( :call<C-U>call Try(1, "SelectNext", ['(', '', ')', 'i', 1])<CR>
+onoremap <silent> ap( :call Try(0, "SelectNext", ['(', '', ')', 'a', 1])<CR>
+vnoremap <silent> ap( :call<C-U>call Try(1, "SelectNext", ['(', '', ')', 'a', 1])<CR>
 
-noremap <silent> <Leader>in[ :call Try(0, "SelectNext", ['\[', '', '\]', 'i', 0])<CR>
-vnoremap <silent> <Leader>in[ :call<C-U>call Try(1, "SelectNext", ['\[', '', '\]', 'i', 0])<CR>
-noremap <silent> <Leader>an[ :call Try(0, "SelectNext", ['\[', '', '\]', 'a', 0])<CR>
-vnoremap <silent> <Leader>an[ :call<C-U>call Try(1, "SelectNext", ['\[', '', '\]', 'a', 0])<CR>
-noremap <silent> <Leader>ip[ :call Try(0, "SelectNext", ['\[', '', '\]', 'i', 1])<CR>
-vnoremap <silent> <Leader>ip[ :call<C-U>call Try(1, "SelectNext", ['\[', '', '\]', 'i', 1])<CR>
-noremap <silent> <Leader>ap[ :call Try(0, "SelectNext", ['\[', '', '\]', 'a', 1])<CR>
-vnoremap <silent> <Leader>ap[ :call<C-U>call Try(1, "SelectNext", ['\[', '', '\]', 'a', 1])<CR>
+onoremap <silent> in[ :call Try(0, "SelectNext", ['\[', '', '\]', 'i', 0])<CR>
+vnoremap <silent> in[ :call<C-U>call Try(1, "SelectNext", ['\[', '', '\]', 'i', 0])<CR>
+onoremap <silent> an[ :call Try(0, "SelectNext", ['\[', '', '\]', 'a', 0])<CR>
+vnoremap <silent> an[ :call<C-U>call Try(1, "SelectNext", ['\[', '', '\]', 'a', 0])<CR>
+onoremap <silent> ip[ :call Try(0, "SelectNext", ['\[', '', '\]', 'i', 1])<CR>
+vnoremap <silent> ip[ :call<C-U>call Try(1, "SelectNext", ['\[', '', '\]', 'i', 1])<CR>
+onoremap <silent> ap[ :call Try(0, "SelectNext", ['\[', '', '\]', 'a', 1])<CR>
+vnoremap <silent> ap[ :call<C-U>call Try(1, "SelectNext", ['\[', '', '\]', 'a', 1])<CR>
 
-noremap <silent> <Leader>in{ :call Try(0, "SelectNext", ['{', '', '}', 'i', 0])<CR>
-vnoremap <silent> <Leader>in{ :call<C-U>call Try(1, "SelectNext", ['{', '', '}', 'i', 0])<CR>
-noremap <silent> <Leader>an{ :call Try(0, "SelectNext", ['{', '', '}', 'a', 0])<CR>
-vnoremap <silent> <Leader>an{ :call<C-U>call Try(1, "SelectNext", ['{', '', '}', 'a', 0])<CR>
-noremap <silent> <Leader>ip{ :call Try(0, "SelectNext", ['{', '', '}', 'i', 1])<CR>
-vnoremap <silent> <Leader>ip{ :call<C-U>call Try(1, "SelectNext", ['{', '', '}', 'i', 1])<CR>
-noremap <silent> <Leader>ap{ :call Try(0, "SelectNext", ['{', '', '}', 'a', 1])<CR>
-vnoremap <silent> <Leader>ap{ :call<C-U>call Try(1, "SelectNext", ['{', '', '}', 'a', 1])<CR>
+onoremap <silent> in{ :call Try(0, "SelectNext", ['{', '', '}', 'i', 0])<CR>
+vnoremap <silent> in{ :call<C-U>call Try(1, "SelectNext", ['{', '', '}', 'i', 0])<CR>
+onoremap <silent> an{ :call Try(0, "SelectNext", ['{', '', '}', 'a', 0])<CR>
+vnoremap <silent> an{ :call<C-U>call Try(1, "SelectNext", ['{', '', '}', 'a', 0])<CR>
+onoremap <silent> ip{ :call Try(0, "SelectNext", ['{', '', '}', 'i', 1])<CR>
+vnoremap <silent> ip{ :call<C-U>call Try(1, "SelectNext", ['{', '', '}', 'i', 1])<CR>
+onoremap <silent> ap{ :call Try(0, "SelectNext", ['{', '', '}', 'a', 1])<CR>
+vnoremap <silent> ap{ :call<C-U>call Try(1, "SelectNext", ['{', '', '}', 'a', 1])<CR>
 
-noremap <silent> <Leader>in< :call Try(0, "SelectNext", ['<', '', '>', 'i', 0])<CR>
-vnoremap <silent> <Leader>in< :call<C-U>call Try(1, "SelectNext", ['<', '', '>', 'i', 0])<CR>
-noremap <silent> <Leader>an< :call Try(0, "SelectNext", ['<', '', '>', 'a', 0])<CR>
-vnoremap <silent> <Leader>an< :call<C-U>call Try(1, "SelectNext", ['<', '', '>', 'a', 0])<CR>
-noremap <silent> <Leader>ip< :call Try(0, "SelectNext", ['<', '', '>', 'i', 1])<CR>
-vnoremap <silent> <Leader>ip< :call<C-U>call Try(1, "SelectNext", ['<', '', '>', 'i', 1])<CR>
-noremap <silent> <Leader>ap< :call Try(0, "SelectNext", ['<', '', '>', 'a', 1])<CR>
-vnoremap <silent> <Leader>ap< :call<C-U>call Try(1, "SelectNext", ['<', '', '>', 'a', 1])<CR>
+onoremap <silent> in< :call Try(0, "SelectNext", ['<', '', '>', 'i', 0])<CR>
+vnoremap <silent> in< :call<C-U>call Try(1, "SelectNext", ['<', '', '>', 'i', 0])<CR>
+onoremap <silent> an< :call Try(0, "SelectNext", ['<', '', '>', 'a', 0])<CR>
+vnoremap <silent> an< :call<C-U>call Try(1, "SelectNext", ['<', '', '>', 'a', 0])<CR>
+onoremap <silent> ip< :call Try(0, "SelectNext", ['<', '', '>', 'i', 1])<CR>
+vnoremap <silent> ip< :call<C-U>call Try(1, "SelectNext", ['<', '', '>', 'i', 1])<CR>
+onoremap <silent> ap< :call Try(0, "SelectNext", ['<', '', '>', 'a', 1])<CR>
+vnoremap <silent> ap< :call<C-U>call Try(1, "SelectNext", ['<', '', '>', 'a', 1])<CR>
 
-noremap <silent> <Leader>indo :call Try(0, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'i', 0])<CR>
-vnoremap <silent> <Leader>indo :call<C-U>call Try(1, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'i', 0])<CR>
-noremap <silent> <Leader>ando :call Try(0, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'a', 0])<CR>
-vnoremap <silent> <Leader>ando :call<C-U>call Try(1, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'a', 0])<CR>
-noremap <silent> <Leader>ipdo :call Try(0, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'i', 1])<CR>
-vnoremap <silent> <Leader>ipdo :call<C-U>call Try(1, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'i', 1])<CR>
-noremap <silent> <Leader>apdo :call Try(0, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'a', 1])<CR>
-vnoremap <silent> <Leader>apdo :call<C-U>call Try(1, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'a', 1])<CR>
+onoremap <silent> indo :call Try(0, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'i', 0])<CR>
+vnoremap <silent> indo :call<C-U>call Try(1, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'i', 0])<CR>
+onoremap <silent> ando :call Try(0, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'a', 0])<CR>
+vnoremap <silent> ando :call<C-U>call Try(1, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'a', 0])<CR>
+onoremap <silent> ipdo :call Try(0, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'i', 1])<CR>
+vnoremap <silent> ipdo :call<C-U>call Try(1, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'i', 1])<CR>
+onoremap <silent> apdo :call Try(0, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'a', 1])<CR>
+vnoremap <silent> apdo :call<C-U>call Try(1, "SelectNext", [g:ruby_block_start, '', g:ruby_block_end, 'a', 1])<CR>
 

@@ -5,6 +5,7 @@ filetype plugin indent on
 
 let mapleader=","
 
+let $PS1 = "(vim)" . $PS1
 let $scratch="~/.vim/scratch"
 let $snippex="~/.vim/snippex"
 

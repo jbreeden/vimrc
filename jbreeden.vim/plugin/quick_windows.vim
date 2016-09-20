@@ -15,35 +15,36 @@ call extend(s:mappings, {
 
 "Resizing
 call extend(s:mappings, {
-  \'>': "<C-w>>",
-  \'<': "<C-w><",
-  \'-': "<C-w>-",
-  \'+': "<C-w>+",
-  \'=': "<C-w>="
+  \'>': '<C-w>>',
+  \'<': '<C-w><',
+  \'-': '<C-w>-',
+  \'+': '<C-w>+',
+  \'=': '<C-w>='
 \})
 
 "Lifecycle functions
 call extend(s:mappings, {
-  \'q': ":q<CR>",
-  \'Q': ":q!<CR>",
-  \'w': ":w<CR>",
-  \'s': ":source %<CR>",
-  \'n': ":new<CR>",
-  \'N': ":vert new<CR>",
-  \'H': ":hide<CR>"
+  \'q': ':q<CR>',
+  \'Q': ':q!<CR>',
+  \'c': ':close<CR>',
+  \'w': ':w<CR>',
+  \'s': ':source %<CR>',
+  \'n': ':new<CR>',
+  \'N': ':vert new<CR>',
+  \'H': ':hide<CR>'
 \})
 
 "Moving
 call extend(s:mappings, {
-  \'x': "<C-W>x",
-  \'r': "<C-W>r",
-  \'R': "<C-W>R"
+  \'x': '<C-W>x',
+  \'r': '<C-W>r',
+  \'R': '<C-W>R'
 \})
 
 "Scrolling
 call extend(s:mappings, {
-  \')': "zl",
-  \'(': "zh"
+  \')': 'zl',
+  \'(': 'zh'
 \})
 
 "Exit on Esc, but also if the insert command is given again.
