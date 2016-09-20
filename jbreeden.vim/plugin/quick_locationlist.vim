@@ -13,8 +13,7 @@ call extend(s:mappings, {
 \})
 
 call extend(s:mappings, {
-  \'<Esc>' : ':call QuickLocationListModeExit()<CR>',
-  \s:trigger : ':call QuickLocationListModeExit()<CR>'
+  \'<Esc>' : ':call QuickLocationListModeExit()<CR>'
 \})
 
 if !exists('s:clobbered')

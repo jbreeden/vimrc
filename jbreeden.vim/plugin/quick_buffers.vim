@@ -19,7 +19,6 @@ let s:mappings = {
   \'n': ':new<CR>',
   \'N': ':vert new<CR>',
   \'<Esc>': ':call QuickBufferModeExit()<CR>',
-  \'<Leader><Leader>b': ':call QuickBufferModeExit()<CR>',
   \'#': ':b #<CR>',
 \}
 

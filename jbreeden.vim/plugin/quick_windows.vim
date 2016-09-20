@@ -52,7 +52,6 @@ call extend(s:mappings, {
 " exit we'll be resetting them to the wrong values)
 call extend(s:mappings, {
   \'<Esc>': ':call QuickWindowModeExit()<CR>',
-  \'<Leader><Leader>w': ':call QuickWindowModeExit()<CR>'
 \})
 
 if !exists('s:clobbered')
