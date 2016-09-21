@@ -1,26 +1,21 @@
-"Insert the result of an expression
-noremap! <Leader>ee <C-r>=
-
-"Insert the result of an expansion
-noremap! <Leader>eE <C-r>=expand("")<Left><Left>
-
 "Insert variations of the current file name/path
-noremap! <Leader>eff <C-r>=expand('%')<CR>
-noremap! <Leader>efp <C-r>=expand('%:p')<CR>
-noremap! <Leader>efd <C-r>=expand('%:h')<CR>
-noremap! <Leader>efn <C-r>=expand('%:t')<CR>
-noremap! <Leader>efr <C-r>=expand('%:r')<CR>
-noremap! <Leader>efe <C-r>=expand('%:e')<CR>
+nnoremap <Leader>iff i<C-r>=expand('%')<CR><Esc>
+nnoremap <Leader>ifp i<C-r>=expand('%:p')<CR><Esc>
+nnoremap <Leader>ifd i<C-r>=expand('%:h')<CR><Esc>
+nnoremap <Leader>ifn i<C-r>=expand('%:t')<CR><Esc>
+nnoremap <Leader>ifr i<C-r>=expand('%:r')<CR><Esc>
+nnoremap <Leader>ife i<C-r>=expand('%:e')<CR><Esc>
 
-"Insert variations of the current file under the cursor
-noremap! <Leader>ecf <C-r>=expand('<cfile>')<CR>
-noremap! <Leader>ecp <C-r>=expand('<cfile>:p')<CR>
-noremap! <Leader>ecd <C-r>=expand('<cfile>:h')<CR>
-noremap! <Leader>ecn <C-r>=expand('<cfile>:t')<CR>
-noremap! <Leader>ecr <C-r>=expand('<cfile>:r')<CR>
-noremap! <Leader>ece <C-r>=expand('<cfile>:e')<CR>
+nnoremap <Leader>aff a<C-r>=expand('%')<CR><Esc>
+nnoremap <Leader>afp a<C-r>=expand('%:p')<CR><Esc>
+nnoremap <Leader>afd a<C-r>=expand('%:h')<CR><Esc>
+nnoremap <Leader>afn a<C-r>=expand('%:t')<CR><Esc>
+nnoremap <Leader>afr a<C-r>=expand('%:r')<CR><Esc>
+nnoremap <Leader>afe a<C-r>=expand('%:e')<CR><Esc>
 
-"Insert objects currently under the cursor
-noremap! <Leader>ecw <C-r>=expand('<cword>')<CR>
-noremap! <Leader>ecW <C-r>=expand('<cWORD>')<CR>
-
+cnoremap <Leader>ff <C-r>=expand('%')<CR>
+cnoremap <Leader>fp <C-r>=expand('%:p')<CR>
+cnoremap <Leader>fd <C-r>=expand('%:h')<CR>
+cnoremap <Leader>fn <C-r>=expand('%:t')<CR>
+cnoremap <Leader>fr <C-r>=expand('%:r')<CR>
+cnoremap <Leader>fe <C-r>=expand('%:e')<CR>
