@@ -9,6 +9,9 @@ let $PS1 = "(vim)" . $PS1
 let $scratch="~/.vim/scratch"
 let $snippex="~/.vim/snippex"
 
+"Don't unload abandoned buffers, just hide them
+set hidden
+
 "Don't wrap lines
 set nowrap
 
