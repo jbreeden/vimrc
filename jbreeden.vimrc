@@ -9,6 +9,9 @@ let $PS1 = "(vim)" . $PS1
 let $scratch="~/.vim/scratch"
 let $snippex="~/.vim/snippex"
 
+"Remember the long long ago
+set history=1000
+
 "Don't unload abandoned buffers, just hide them
 set hidden
 
