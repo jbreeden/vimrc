@@ -14,7 +14,6 @@ call extend(s:mappings, {
 
 call extend(s:mappings, {
   \'<Esc>' : ':call QuickQuickfixModeExit()<CR>',
-  \s:trigger : ':call QuickQuickfixModeExit()<CR>'
 \})
 
 if !exists('s:clobbered')

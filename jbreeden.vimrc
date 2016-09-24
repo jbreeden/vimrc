@@ -9,6 +9,9 @@ let $PS1 = "(vim)" . $PS1
 let $scratch="~/.vim/scratch"
 let $snippex="~/.vim/snippex"
 
+"Always have a status line (instead of omitting it for a single window view)
+set laststatus=2
+
 "Don't unload abandoned buffers, just hide them
 set hidden
 

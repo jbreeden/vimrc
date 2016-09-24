@@ -10,7 +10,8 @@ call extend(s:mappings, {
   \'j': '<C-w>j',
   \'k': '<C-w>k',
   \'h': '<C-w>h',
-  \'l': '<C-w>l'
+  \'l': '<C-w>l',
+  \'p': '<C-w>p',
 \})
 
 "Resizing
