@@ -5,9 +5,13 @@ filetype plugin indent on
 
 let mapleader=","
 
+"Preprend '(vim)' to prompts when entering a subshell from vim.
 let $PS1 = "(vim)" . $PS1
-let $scratch="~/.vim/scratch"
-let $snippex="~/.vim/snippex"
+
+"Ensure a scratch directory is present
+if finddir('~/.vim/scratch') == ''
+  call mkdir(expand('~') . '/.vim/scratch', 'p')
+endif
 
 "Always have a status line (instead of omitting it for a single window view)
 set laststatus=2
