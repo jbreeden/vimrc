@@ -8,7 +8,6 @@ call extend(s:mappings, {
 
 call extend(s:mappings, {
   \'<Esc>' : ':call Quick{TODO: quick_mode_name}ModeExit()<CR>',
-  \s:trigger : ':call Quick{TODO: quick_mode_name}ModeExit()<CR>'
 \})
 
 if !exists('s:clobbered')
@@ -27,3 +26,4 @@ function! Quick{TODO: quick_mode_name}ModeExit()
 endfunction
 
 execute "nnoremap " . s:trigger . " :call Quick{TODO: quick_mode_name}Mode()<CR>"
+

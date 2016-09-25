@@ -1,0 +1,49 @@
+Useful Motions
+--------------
+
+'.  `.                  To the position where the last change was made.
+
+g;                      Go to [count] older position in change list.
+
+g,                      Go to [count] newer cursor position in change list.
+
+[(                      go to [count] previous unmatched '('.
+                        exclusive motion. {not in Vi}
+
+                                                [{
+[{                      go to [count] previous unmatched '{'.
+                        exclusive motion. {not in Vi}
+
+                                                ])
+])                      go to [count] next unmatched ')'.
+                        exclusive motion. {not in Vi}
+
+                                                ]}
+]}                      go to [count] next unmatched '}'.
+                        exclusive motion. {not in Vi}
+
+The above four commands can be used to go to the start or end of the current
+code block.  It is like doing "%" on the '(', ')', '{' or '}' at the other
+end of the code block, but you can do this from anywhere in the code block.
+Very useful for C programs.  Example: When standing on "case x:", "[{" will
+bring you back to the switch statement.
+
+Useful Ex Commands
+------------------
+
+|:&|		:&		repeat last ":substitute"
+|:bmodified|	:bm[odified]	go to next buffer in the buffer list that has been modified
+|:change|	:c[hange]	replace a line or series of lines
+|:changes|	:changes	print the change list
+|:earlier|	:ea[rlier]	go to older change, undo
+|:cexpr|	:cex[pr]	read errors from expr and jump to first
+|:grep|		:gr[ep]		run 'grepprg' and jump to first match
+|:grep|		:gr[ep]		run 'grepprg' and jump to first match
+|:insert|	:i[nsert]	insert text
+|:join|		:j[oin]		join lines
+|:keepmarks|	:kee[pmarks]	following command keeps marks where they are
+|:list|		:l[ist]		print lines
+|:mkexrc|	:mk[exrc]	write current mappings and settings to a file
+|:scriptnames|	:scrip[tnames]	list names of all sourced Vim scripts
+|:sleep|	:sl[eep]	do nothing for a few seconds
+

@@ -1,0 +1,3 @@
+call SnippexTodoTemplate()
+find . -iname '{TODO}' | xargs -n 1 sed -ibak 's/{TODO}/{TODO}'
+
