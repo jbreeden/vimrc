@@ -48,7 +48,6 @@ task :install do
   github_bundle("syntastic", "scrooloose/syntastic")
   github_bundle("vim-surround", "tpope/vim-surround")
   github_bundle("vim-indent-object", "michaeljsmith/vim-indent-object")
-  github_bundle("vim-indent-object", "michaeljsmith/vim-indent-object")
   github_bundle("vim-monokai", "sickill/vim-monokai")
   github_bundle("vim-colors-solarized", "altercation/vim-colors-solarized")
 end
