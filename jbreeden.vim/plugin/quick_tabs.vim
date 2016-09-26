@@ -22,7 +22,6 @@ call extend(s:mappings, {
   \'-': ':tabmove -1<CR>',
   \'<': ':tabmove -1<CR>',
   \'<Esc>' : ':call QuickTabModeExit()<CR>',
-  \s:trigger : ':call QuickTabModeExit()<CR>',
 \})
 
 if !exists('s:clobbered')

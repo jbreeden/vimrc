@@ -1,9 +1,12 @@
-"Setup pathogen (a vim package manager) execute pathogen#infect()
+"Setup pathogen (a vim package manager) 
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
 let mapleader=","
+
+"Let ~ act as an operator (like in vi)
+set tildeop
 
 "Preprend '(vim)' to prompts when entering a subshell from vim.
 let $PS1 = "(vim)" . $PS1
