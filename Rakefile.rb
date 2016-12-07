@@ -1,5 +1,7 @@
 $root = File.dirname(__FILE__)
 
+# Esure's the directory for the given bundle name exists,
+# sets it as the CWD, then executes the given block.
 def bundle(folder_name)
   bundle_dir = "#{$root}/jbreeden.vim/bundle"
   target = "#{bundle_dir}/#{folder_name}"
@@ -10,6 +12,7 @@ def bundle(folder_name)
   end
 end
 
+# Create a bundle by checking out a github repo.
 def github_bundle(folder_name, repo_name) 
   bundle(folder_name) {
     sh "git clone --depth=1 https://github.com/#{repo_name}"
@@ -48,7 +51,5 @@ task :install do
   github_bundle("syntastic", "scrooloose/syntastic")
   github_bundle("vim-surround", "tpope/vim-surround")
   github_bundle("vim-indent-object", "michaeljsmith/vim-indent-object")
-  github_bundle("vim-monokai", "sickill/vim-monokai")
-  github_bundle("vim-colors-solarized", "altercation/vim-colors-solarized")
 end
 

@@ -3,6 +3,10 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+"Unset compatability mode (enables vim features that are not compatible with vi)
+set nocp
+
+"Leader key FTW
 let mapleader=","
 
 "Let ~ act as an operator (like in vi)
@@ -31,9 +35,6 @@ set nobackup
 "Avoids swap files next to the file being edited
 "Trailing // ensures unique file names for swap files
 set dir=~/tmp//,/var/tmp//,/tmp//
-
-"Unset compatability mode (enables vim features that are not compatible with vi)
-set nocp
 
 "Highlight all search results (use :noh to disable until next search)
 set hlsearch
@@ -69,3 +70,8 @@ set smartcase
 
 "Open splits to the right of the current window
 set splitright
+
+"Customize Netrw
+let g:netrw_liststyle=3
+let g:netrw_banner=0
+
