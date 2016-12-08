@@ -9,6 +9,12 @@ set nocp
 "Leader key FTW
 let mapleader=","
 
+"Let the path recurse!
+set path+=**
+
+"...but be reasonable about it
+set wildignore+=**/node_modules/**
+
 "Let ~ act as an operator (like in vi)
 set tildeop
 
@@ -19,6 +25,9 @@ let $PS1 = "(vim)" . $PS1
 if finddir('~/.vim/scratch') == ''
   call mkdir(expand('~') . '/.vim/scratch', 'p')
 endif
+
+"Make sure the command-line completion is super dope.
+set wildmenu
 
 "Always have a status line (instead of omitting it for a single window view)
 set laststatus=2
